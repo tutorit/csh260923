@@ -35,9 +35,15 @@ void ArraysList()
     }
 }
 
+int PromptForInt(string prompt)
+{
+    Console.Write(prompt + ": ");
+    string s = Console.ReadLine();
+    return int.Parse(s);
+}
+
 void ArvausPeli()
 {
-
     const int maxValue = 50;
     Console.WriteLine($"Arvaa luku 1-{maxValue}");
     int secret = new Random().Next(maxValue) + 1;
@@ -45,9 +51,12 @@ void ArvausPeli()
     int guess = 0, numGuesses = 0;
     while (true)  //(guess != secret)
     {
+        /*
         Console.Write("Arvauksesi: ");
         string guessString = Console.ReadLine();
         guess = int.Parse(guessString);
+        */
+        guess = PromptForInt("Arvauksesi");
         if ((guess < 1) || (guess > maxValue))
         {
             Console.WriteLine("Paha arvaus");
