@@ -11,8 +11,33 @@ tx += a;
 */
 //Console.WriteLine(tx);
 
-Console.WriteLine("Arvaa luku 1-100");
-int secret = new Random().Next(100) + 1;
+using System.Net.WebSockets;
+
+int a = 32;
+var b = 43;
+var c = "Hello";
+
+dynamic d = "Hello";
+Console.WriteLine(d.GetType());
+d = 32;
+Console.WriteLine(d.GetType());
+
+string wds = "Ma,Ti,Ke,To,Pe,La,Su";
+Console.WriteLine("Viikonpäivät: " + wds);
+string[] wda=wds.Split(",");
+foreach(string wd in wda)
+{
+    Console.WriteLine(wd);
+}
+List<string> wdl = new List<string>(wda);
+foreach(string wd in wdl)
+{
+    Console.WriteLine(wd);
+}
+
+const int maxValue = 50;
+Console.WriteLine($"Arvaa luku 1-{maxValue}");
+int secret = new Random().Next(maxValue) + 1;
 Console.WriteLine("Salainen " + secret);
 int guess = 0, numGuesses=0;
 while (true)  //(guess != secret)
@@ -20,7 +45,7 @@ while (true)  //(guess != secret)
     Console.Write("Arvauksesi: ");
     string guessString = Console.ReadLine();
     guess=int.Parse(guessString);
-    if ((guess < 1) || (guess > 100))
+    if ((guess < 1) || (guess > maxValue))
     {
         Console.WriteLine("Paha arvaus");
         continue;
