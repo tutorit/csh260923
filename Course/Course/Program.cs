@@ -103,11 +103,11 @@ Nullable<int> c = new Nullable<int>();
 a = 4;
 */
 
-Person p = new Person();
+Person p = new Person("Jussi");
 //p.name = "Jussi";
-p.Name = "Jyrki";
-p.Name = "";
-p.Name = null;
+//p.Name = "Jyrki";
+//p.Name = "";
+//p.Name = null;
 p.Email = "jyrki@koe.com";
 p.Email = null;
 //p.Birthday = DateOnly.Parse("15.8.2000");
@@ -117,4 +117,9 @@ p.Email = null;
 p.BirthdayString = "13.5.2000";
 p.BirthdayString = null;
 Console.WriteLine(p.Name + "," + p.Email+","+p.BirthdayString+", Age="+p.Age);
+Person p2 = new Person("Teppo", "teppo@koe.com", DateOnly.Parse("11.11.2011")) ;
+Console.WriteLine(p2.Name + "," + p2.Email + "," + p2.BirthdayString + ", Age=" + p2.Age);
+
+Person p3 = new Person("Matti", "matti@koe.com", "12.12.1992");
+Console.WriteLine(p3.Name + "," + p3.Email + "," + p3.BirthdayString + ", Age=" + p3.Age);
 

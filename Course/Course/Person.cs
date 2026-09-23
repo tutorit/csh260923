@@ -10,6 +10,20 @@ namespace Course
         private string email = "";
         private DateOnly? birthday = null;
 
+        public Person(string name,string email="",DateOnly? birthday=null)
+        {
+            this.Name = name;
+            this.Email= email;
+            this.Birthday = birthday;
+        }
+
+        public Person(string name,string email,string birthday)
+        {
+            this.Name = name;
+            this.Email = email;
+            this.BirthdayString=birthday;
+        }
+
         public string Name {
             get 
             {
