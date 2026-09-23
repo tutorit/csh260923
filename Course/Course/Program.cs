@@ -1,4 +1,6 @@
-﻿void Variables()
+﻿using Course;
+
+void Variables()
 {
     Console.WriteLine("Hello, World!");
 
@@ -78,5 +80,41 @@ void ArvausPeli()
     Console.WriteLine($"Oikein interpoloitu, arvauksia {numGuesses}");
 }
 
+void MuutaArvo(ref int a)
+{
+    Console.WriteLine("Sain arvon " + a);
+    a++;
+    Console.WriteLine("Muutin arvoa " + a);
+}
+
+void RefTest()
+{
+    int arvo = 53;
+    MuutaArvo(ref arvo);
+    Console.WriteLine("Nyt arvo on " + arvo);
+}
 //ArraysList();
-ArvausPeli();
+//ArvausPeli();
+
+/*
+string s = null;
+int? a = null;
+Nullable<int> c = new Nullable<int>();
+a = 4;
+*/
+
+Person p = new Person();
+//p.name = "Jussi";
+p.Name = "Jyrki";
+p.Name = "";
+p.Name = null;
+p.Email = "jyrki@koe.com";
+p.Email = null;
+//p.Birthday = DateOnly.Parse("15.8.2000");
+//p.BirthdayString = "16.9.2001";
+//p.Birthday = null;
+//p.Birthday = DateOnly.Parse("24.12.2026");
+p.BirthdayString = "13.5.2000";
+p.BirthdayString = null;
+Console.WriteLine(p.Name + "," + p.Email+","+p.BirthdayString+", Age="+p.Age);
+
