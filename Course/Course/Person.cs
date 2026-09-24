@@ -11,7 +11,7 @@ namespace Course
         public int Direction { get; set; }
     }
 
-    internal class Person
+    internal class Person : IComparable<Person>
     {
         private string name="Nimetön";
         private string email = "";
@@ -102,6 +102,11 @@ namespace Course
         public override string ToString()
         {
             return Name+"("+Id+")" + "," + Email + "," + BirthdayString + "," + Age;
+        }
+
+        public int CompareTo(Person other)
+        {
+            return this.Name.CompareTo(other.Name);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Course;
+using System.Collections;
 
 
 void Variables()
@@ -36,6 +37,7 @@ void ArraysList()
         Console.WriteLine(wd);
     }
     List<string> wdl = new List<string>(wda);
+    wdl.Sort();
     foreach (string wd in wdl)
     {
         Console.WriteLine(wd);
@@ -206,13 +208,14 @@ void MakePurchase(IBuyer o,double amount)
     Console.WriteLine("Kuitti: " + s);
 }
 
+void purchaseTest()
+{
+    Customer cust = new Customer("Antero", 3000);
+    Company comp = new Company() { Name = "Acme", Purchases = 4000 };
 
-Customer cust = new Customer("Antero", 3000);
-Company comp = new Company() { Name = "Acme", Purchases = 4000 };
-
-MakePurchase(cust, 200);
-MakePurchase(comp, 300);
-
+    MakePurchase(cust, 200);
+    MakePurchase(comp, 300);
+}
 void PrintPrice(double net, double vat, Calculator calcTotal)
 {
     double total = calcTotal(net, vat);
@@ -220,8 +223,58 @@ void PrintPrice(double net, double vat, Calculator calcTotal)
     Console.WriteLine($"{net}+ALV {vatAmount} = ${total}");
 }
 
-PrintPrice(100, 25.5,(a,b) => a+a*b/100);
-PrintPrice(200, 0.255,(a,b) => a+a*b);
-PrintPrice(300, 71.5, (a,b) => a+b);
+void DelegateTest()
+{
+    PrintPrice(100, 25.5, (a, b) => a + a * b / 100);
+    PrintPrice(200, 0.255, (a, b) => a + a * b);
+    PrintPrice(300, 71.5, (a, b) => a + b);
+}
+
+void CollectionsDemo()
+{
+    SortedSet<string> hs= new SortedSet<string>();
+    hs.Add("Mon");
+    hs.Add("Tue");
+    hs.Add("Wed");
+    hs.Add("Thu");
+    hs.Add("Mon");
+    foreach(string s in hs)
+    {
+        Console.WriteLine(s);
+    }
+
+    Dictionary<string, Person> d = new Dictionary<string, Person>();
+    d["123"] = new Person("Tuomas");
+    d["234"] = new Person("Simeoni");
+    Console.WriteLine(d["123"]);
+    foreach(KeyValuePair<string,Person> x in d)
+    {
+        Console.WriteLine(x.Key+","+x.Value);
+    }
+}
+
+//CollectionsDemo();
+
+ArraysList();
+
+PersonList pl = new PersonList();
+pl.Tulosta();
+pl.TulostaKaanteinen();
+pl.JarjestaNimenMukaan();
+pl.Tulosta();
+pl.JarjestaIanMukaan();
+pl.Tulosta();
+IEnumerable<Person> etsityt = pl.EtsiNimessaOsana("a");
+foreach(Person p in etsityt)
+{
+    Console.WriteLine("Löytyi " + p.Name);
+}
+Console.WriteLine("Iät");
+IEnumerable<string> nimet = pl.IkaSuurempi(40);
+foreach(string n in nimet)
+{
+    Console.WriteLine(n);
+}
+
 
 delegate double Calculator(double a, double b);
