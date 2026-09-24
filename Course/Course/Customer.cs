@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Course
 {
-    internal class Customer : Person
+    internal class Customer : Person,IBuyer
     {
         public double Purchases { get; private set; }
 
@@ -16,6 +16,11 @@ namespace Course
         public override string ToString()
         {
             return Name + " on ostanut " + Purchases + " eurolla";
+        }
+
+        public string Buy(double amount)
+        {
+            return "Henkilöosto " + amount + "EUR";
         }
     }
 }

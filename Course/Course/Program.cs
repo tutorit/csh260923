@@ -153,44 +153,61 @@ Nullable<int> c = new Nullable<int>();
 a = 4;
 */
 
-Car car = new Car();
-
-Person p = new Person("Jussi");
-//p.name = "Jussi";
-//p.Name = "Jyrki";
-//p.Name = "";
-//p.Name = null;
-p.Email = "jyrki@koe.com";
-p.Email = null;
-//p.Birthday = DateOnly.Parse("15.8.2000");
-//p.BirthdayString = "16.9.2001";
-//p.Birthday = null;
-//p.Birthday = DateOnly.Parse("24.12.2026");
-p.BirthdayString = "13.5.2000";
-p.BirthdayString = null;
-//Console.WriteLine(p.Name + "," + p.Email+","+p.BirthdayString+", Age="+p.Age);
-Person p2 = new Person("Teppo", "teppo@koe.com", DateOnly.Parse("11.11.2011")) ;
-//Console.WriteLine(p2.Name + "," + p2.Email + "," + p2.BirthdayString + ", Age=" + p2.Age);
-
-TestIt(p);
-TestIt(p2);
-
-Person p3 = new Person("Matti", "matti@koe.com", "12.12.1992");
-Console.WriteLine(p3.Name + "," + p3.Email + "," + p3.BirthdayString + ", Age=" + p3.Age);
-
-Console.WriteLine(p3);
+//Car car = new Car();
 
 
-Customer c=new Customer("Aimo Asiakas",4300);
-// c.Purchases = 43;
-//Console.WriteLine(c);
-TestIt(c);
-TestIt(DateTime.Now);
-TestIt("Terve maailma");
+void PersonTests()
+{
+    Person p = new Person("Jussi");
+    //p.name = "Jussi";
+    //p.Name = "Jyrki";
+    //p.Name = "";
+    //p.Name = null;
+    p.Email = "jyrki@koe.com";
+    p.Email = null;
+    //p.Birthday = DateOnly.Parse("15.8.2000");
+    //p.BirthdayString = "16.9.2001";
+    //p.Birthday = null;
+    //p.Birthday = DateOnly.Parse("24.12.2026");
+    p.BirthdayString = "13.5.2000";
+    p.BirthdayString = null;
+    //Console.WriteLine(p.Name + "," + p.Email+","+p.BirthdayString+", Age="+p.Age);
+    Person p2 = new Person("Teppo", "teppo@koe.com", DateOnly.Parse("11.11.2011"));
+    //Console.WriteLine(p2.Name + "," + p2.Email + "," + p2.BirthdayString + ", Age=" + p2.Age);
+
+    TestIt(p);
+    TestIt(p2);
+
+    Person p3 = new Person("Matti", "matti@koe.com", "12.12.1992");
+    Console.WriteLine(p3.Name + "," + p3.Email + "," + p3.BirthdayString + ", Age=" + p3.Age);
+
+    Console.WriteLine(p3);
 
 
-TestPerson(p);
-TestPerson(c);
+    Customer c = new Customer("Aimo Asiakas", 4300);
+    // c.Purchases = 43;
+    //Console.WriteLine(c);
+    TestIt(c);
+    TestIt(DateTime.Now);
+    TestIt("Terve maailma");
 
-string s = "Terve maailma";
-Console.WriteLine(s.Substring(s.Length-5));
+
+    TestPerson(p);
+    TestPerson(c);
+
+}
+
+//PersonTests();
+
+void MakePurchase(IBuyer o,double amount)
+{
+    string s = o.Buy(amount);
+    Console.WriteLine("Kuitti: " + s);
+}
+
+
+Customer cust = new Customer("Antero", 3000);
+Company comp = new Company() { Name = "Acme", Purchases = 4000 };
+
+MakePurchase(cust, 200);
+MakePurchase(comp, 300);
