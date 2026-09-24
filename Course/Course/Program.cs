@@ -1,5 +1,6 @@
 ﻿using Course;
 
+
 void Variables()
 {
     Console.WriteLine("Hello, World!");
@@ -211,3 +212,16 @@ Company comp = new Company() { Name = "Acme", Purchases = 4000 };
 
 MakePurchase(cust, 200);
 MakePurchase(comp, 300);
+
+void PrintPrice(double net, double vat, Calculator calcTotal)
+{
+    double total = calcTotal(net, vat);
+    double vatAmount = total - net;
+    Console.WriteLine($"{net}+ALV {vatAmount} = ${total}");
+}
+
+PrintPrice(100, 25.5,(a,b) => a+a*b/100);
+PrintPrice(200, 0.255,(a,b) => a+a*b);
+PrintPrice(300, 71.5, (a,b) => a+b);
+
+delegate double Calculator(double a, double b);
