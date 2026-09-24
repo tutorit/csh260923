@@ -4,11 +4,20 @@ using System.Text;
 
 namespace Course
 {
+
+    class Car
+    {
+        public int Speed { get; set; }
+        public int Direction { get; set; }
+    }
+
     internal class Person
     {
         private string name="Nimetön";
         private string email = "";
         private DateOnly? birthday = null;
+
+        //public Person() { }
 
         public Person(string name,string email="",DateOnly? birthday=null)
         {
@@ -83,6 +92,11 @@ namespace Course
                 //if (!birthday.HasValue) return null;
                 return DateTime.Now.Year - birthday?.Year;
             }
+        }
+
+        public override string ToString()
+        {
+            return Name + "," + Email + "," + BirthdayString + "," + Age;
         }
     }
 }

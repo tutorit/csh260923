@@ -8,6 +8,8 @@ void Variables()
     a = 54;
     Int32 b = 64; // int ja Int32 ovat synonyymit
 
+    double db = 3.14;
+
     string tx = "Hello";
     tx += " maailma";
     tx += a;
@@ -26,6 +28,8 @@ void ArraysList()
     string wds = "Ma,Ti,Ke,To,Pe,La,Su";
     Console.WriteLine("Viikonpäivät: " + wds);
     string[] wda = wds.Split(",");
+    Console.WriteLine(wda[1]);
+    wda[1] = "Tiis";
     foreach (string wd in wda)
     {
         Console.WriteLine(wd);
@@ -59,6 +63,11 @@ void ArvausPeli()
         guess = int.Parse(guessString);
         */
         guess = PromptForInt("Arvauksesi");
+        int[] valids = [3,6,7];
+        if (valids.Contains(guess))
+        {
+            Console.WriteLine("Verrattu useampaan arvoon");
+        }
         if ((guess < 1) || (guess > maxValue))
         {
             Console.WriteLine("Paha arvaus");
@@ -80,11 +89,12 @@ void ArvausPeli()
     Console.WriteLine($"Oikein interpoloitu, arvauksia {numGuesses}");
 }
 
-void MuutaArvo(ref int a)
+int MuutaArvo(ref int a)
 {
     Console.WriteLine("Sain arvon " + a);
     a++;
     Console.WriteLine("Muutin arvoa " + a);
+    return 3;
 }
 
 void RefTest()
@@ -102,6 +112,8 @@ int? a = null;
 Nullable<int> c = new Nullable<int>();
 a = 4;
 */
+
+Car car = new Car();
 
 Person p = new Person("Jussi");
 //p.name = "Jussi";
@@ -122,4 +134,11 @@ Console.WriteLine(p2.Name + "," + p2.Email + "," + p2.BirthdayString + ", Age=" 
 
 Person p3 = new Person("Matti", "matti@koe.com", "12.12.1992");
 Console.WriteLine(p3.Name + "," + p3.Email + "," + p3.BirthdayString + ", Age=" + p3.Age);
+
+Console.WriteLine(p3);
+
+
+Customer c=new Customer("Aimo Asiakas",4300);
+// c.Purchases = 43;
+Console.WriteLine(c);
 
