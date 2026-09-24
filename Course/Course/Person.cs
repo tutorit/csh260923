@@ -17,6 +17,9 @@ namespace Course
         private string email = "";
         private DateOnly? birthday = null;
 
+        public int Id { get; private set; }
+        private static int nextId = 1;
+
         //public Person() { }
 
         public Person(string name,string email="",DateOnly? birthday=null)
@@ -24,6 +27,7 @@ namespace Course
             this.Name = name;
             this.Email= email;
             this.Birthday = birthday;
+            Id = nextId++;
         }
 
         public Person(string name,string email,string birthday)
@@ -31,6 +35,7 @@ namespace Course
             this.Name = name;
             this.Email = email;
             this.BirthdayString=birthday;
+            Id = nextId++;
         }
 
         public string Name {
@@ -96,7 +101,7 @@ namespace Course
 
         public override string ToString()
         {
-            return Name + "," + Email + "," + BirthdayString + "," + Age;
+            return Name+"("+Id+")" + "," + Email + "," + BirthdayString + "," + Age;
         }
     }
 }

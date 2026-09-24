@@ -41,11 +41,32 @@ void ArraysList()
     }
 }
 
-int PromptForInt(string prompt)
+int PromptForIntAlkuperainen(string prompt)
 {
     Console.Write(prompt + ": ");
     string s = Console.ReadLine();
-    return int.Parse(s);
+    try
+    {
+        return int.Parse(s);
+    }
+    catch(FormatException fex)
+    {
+        Console.WriteLine("Poikkeus:" + fex);
+        return 0;
+    }
+}
+
+int PromptForInt(string prompt)
+{
+    bool onnistui = false;
+    int result = 0;
+    while (!onnistui)
+    {
+        Console.Write(prompt + ": ");
+        string s = Console.ReadLine();
+        onnistui = int.TryParse(s, out result);
+    }
+    return result;
 }
 
 void ArvausPeli()
@@ -63,11 +84,13 @@ void ArvausPeli()
         guess = int.Parse(guessString);
         */
         guess = PromptForInt("Arvauksesi");
+        /*
         int[] valids = [3,6,7];
         if (valids.Contains(guess))
         {
             Console.WriteLine("Verrattu useampaan arvoon");
         }
+        */
         if ((guess < 1) || (guess > maxValue))
         {
             Console.WriteLine("Paha arvaus");
@@ -103,6 +126,23 @@ void RefTest()
     MuutaArvo(ref arvo);
     Console.WriteLine("Nyt arvo on " + arvo);
 }
+
+void TestIt(object o)
+{
+    Console.WriteLine("Testi: " + o);
+}
+
+void TestPerson(Person p)
+{
+    Console.WriteLine("Test person: " + p.Name);
+    if (p is Customer)
+    {
+        Customer c = p as Customer;
+        Console.WriteLine("Ostot " + c.Purchases);
+    }
+    else Console.WriteLine("Ei ole asiakas");
+}
+
 //ArraysList();
 //ArvausPeli();
 
@@ -128,9 +168,12 @@ p.Email = null;
 //p.Birthday = DateOnly.Parse("24.12.2026");
 p.BirthdayString = "13.5.2000";
 p.BirthdayString = null;
-Console.WriteLine(p.Name + "," + p.Email+","+p.BirthdayString+", Age="+p.Age);
+//Console.WriteLine(p.Name + "," + p.Email+","+p.BirthdayString+", Age="+p.Age);
 Person p2 = new Person("Teppo", "teppo@koe.com", DateOnly.Parse("11.11.2011")) ;
-Console.WriteLine(p2.Name + "," + p2.Email + "," + p2.BirthdayString + ", Age=" + p2.Age);
+//Console.WriteLine(p2.Name + "," + p2.Email + "," + p2.BirthdayString + ", Age=" + p2.Age);
+
+TestIt(p);
+TestIt(p2);
 
 Person p3 = new Person("Matti", "matti@koe.com", "12.12.1992");
 Console.WriteLine(p3.Name + "," + p3.Email + "," + p3.BirthdayString + ", Age=" + p3.Age);
@@ -140,5 +183,14 @@ Console.WriteLine(p3);
 
 Customer c=new Customer("Aimo Asiakas",4300);
 // c.Purchases = 43;
-Console.WriteLine(c);
+//Console.WriteLine(c);
+TestIt(c);
+TestIt(DateTime.Now);
+TestIt("Terve maailma");
 
+
+TestPerson(p);
+TestPerson(c);
+
+string s = "Terve maailma";
+Console.WriteLine(s.Substring(s.Length-5));
